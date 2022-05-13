@@ -1,0 +1,64 @@
+<% layout('layout') %>
+    <% for(let i=0;i<mail.length;i++){ %>
+        <section>
+            <div class="ad-listing-list mt-20 container" onclick="divClicked(<%=i%>);" style="background-color: white;">
+                <div class="row p-lg-3 p-sm-5 p-4">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-10">
+                                <div class="ad-listing-content">
+                                    <div>
+                                        <a href="" class="font-weight-bold">主旨：<%=mail[i].msgt_Subject %></a>
+                                    </div>
+                                    <ul class="list-inline mt-2 mb-3">
+                                        <li class="list-inline-item">收件人：<%=mail[i].msg_RecID %>
+                                        </li>
+                                        <li class="list-inline-item">收件時間：
+                                            <%=mail[i].msgt_PDate.toLocaleString('zh-tw')%>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="eject<%=i%>" class="container" style="display:none">
+                <h6 class="font-weight-bold pt-4 pb-1">收件匣</h6>
+                <textarea readonly name="mailInformation" id="mailInformation" class="border p-10 w-100"
+                    rows="7"><%=mail[i].msgt_massage %> </textarea>
+                    <button type="submit" class="btn btn-primary" onclick="deleteoutClicked(<%=i%>);" id="deleteOutbox<%=i %>"value="<%=mail[i].msg_ID %>">刪除</button>
+            </div>
+
+
+        </section>
+        <% } %>
+            <script>
+                function divClicked(i) {
+                    var divD = document.getElementById("eject"+i);
+                    if (divD.style.display == "none") {
+                        divD.style.display = "block";
+                    }
+                    else {
+                        divD.style.display = "none";
+                    }
+                }
+            </script>
+            <script>
+                function deleteoutClicked(i) {
+                    let callPostApiButton = document.getElementById("deleteOutbox" + i);
+                    let msg_SendStatue="1";
+                    const deleteOutbox={
+                        msg_ID:callPostApiButton.value,
+                        msg_SendStatue:msg_SendStatue,
+                    }
+                    fetch("/api/deleteOutbox",{
+                        method:"POST",
+                        body:JSON.stringify(deleteOutbox),
+                        headers:{
+                            "Content-Type":"application/json"
+                        }
+                    }).then(res=>res.json())
+                    .then(window.location.reload())
+
+                }
+            </script>

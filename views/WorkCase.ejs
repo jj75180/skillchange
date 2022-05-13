@@ -1,0 +1,81 @@
+<% layout('layout') %>
+    <% for(let i=0;i<data.length;i++){ %>
+        <section>
+            <div class="ad-listing-list mt-20 container" onclick="divClicked(<%=i%>);" style="background-color: white;">
+                <div class="row p-lg-3 p-sm-5 p-4">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-10">
+                                <div class="ad-listing-content">
+                                    <div>
+                                        <a href="" class="font-weight-bold">任務名稱：<%=data[i].caseinfo%></a>
+                                    </div>
+                                    <ul class="list-inline mt-2 mb-3">
+                                        <li class="list-inline-item">任務點數：<%=data[i].coin %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="eject<%=i%>" class="container" style="display:none">
+                <h6 class="font-weight-bold pt-4 pb-1"></h6>
+                <form onsubmit="return false;">
+                    <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="recmail" id="recmail<%=i %>" value="<%=data[i].id_mail %>">
+                    <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="caseinfo" id="caseinfo<%=i %>" value="<%=data[i].caseinfo %>">
+                    <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="username" id="username<%=i %>" value="<%=data[i].id_name %>">
+                    <label class="form-label" for="case_describe">完成描述</label>
+                    <textarea class="form-control" id="case_describe<%=i %>" name="case_describe" rows="4"></textarea>
+                    <button type="submit" class="btn btn-primary" onclick="buttonClicked(<%=i%>);" id="complete<%=i %>"
+                        value="<%=data[i].case_num %> ">完成任務</button>
+                </form>
+            </div>
+
+
+        </section>
+        <% } %>
+            <script>
+                function divClicked(i) {
+                    var divD = document.getElementById("eject" + i);
+                    if (divD.style.display == "none") {
+                        divD.style.display = "block";
+                    }
+                    else {
+                        divD.style.display = "none";
+                    }
+                }
+            </script>
+            <script>
+                function buttonClicked(i) {
+                    let callPostApiButton = document.getElementById("complete" + i);
+                    let case_staus = "審核完成任務";
+                    let tzoffset = (new Date()).getTimezoneOffset() * 60000; 
+                    let case_completedtime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, 19).replace('T', ' ');
+                    let recmail=document.getElementById("recmail" + i).value;
+                    let caseinfo=document.getElementById("caseinfo" + i).value;
+                    let username=document.getElementById("username" + i).value;
+                    let case_describe=document.getElementById("case_describe" + i).value;
+
+                    const complete = {
+                        case_num: callPostApiButton.value,
+                        case_staus: case_staus,
+                        case_describe: case_describe,
+                        case_completedtime:case_completedtime,
+                        recmail:recmail,
+                        caseinfo:caseinfo,
+                        username:username,
+                    }
+                    console.log(complete);
+                    fetch("/api/complete", {
+                        method: "POST",
+                        body: JSON.stringify(complete),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }).then(res => res.json())
+                        .then(window.location.reload())
+
+                }
+            </script>

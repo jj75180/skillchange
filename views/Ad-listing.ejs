@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>交換技能平台</title>
+
+  <!-- FAVICON -->
+  <link href="img/favicon.png" rel="shortcut icon">
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap-slider.css">
+  <!-- Font Awesome -->
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Owl Carousel -->
+  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+  <!-- Fancy Box -->
+  <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<%-partial('partial/header')%>
+<body class="body-wrapper">
+  <section class="ad-post bg-gray py-5">
+    <div class="container">
+      <form onsubmit="return false;" id="form">
+        <!-- Post Your ad start -->
+        <fieldset class="border border-gary p-4 mb-5">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3>刊登技能</h3>
+            </div>
+            <div class="col-lg-6">
+              <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="id_account" id="id_account" value="<%=user.id_account %>">
+              <h6 class="font-weight-bold pt-4 pb-1">技能名稱</h6>
+              <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="caseinfo" id="caseinfo">
+              <h6 class="font-weight-bold pt-4 pb-1">技能分類</h6>
+              <div class="row px-3">
+                <div class="col-lg-2 mr-lg-2 my-1 rounded bg-white ">
+                  <input type="radio" name="SkillClass" id="SkillClass" value="學習" >
+                  <label for="學習" class="py-1">學習</label>
+                </div>
+                <div class="col-lg-2 mr-lg-2 my-1 rounded bg-white ">
+                  <input type="radio" name="SkillClass" id="SkillClass" value="生活" >
+                  <label for="生活" class="py-1">生活</label>
+                </div>
+                <div class="col-lg-2 mr-lg-2 my-1 rounded bg-white ">
+                  <input type="radio" name="SkillClass" id="SkillClass" value="創意" >
+                  <label for="創意" class="py-1">創意</label>
+                </div>
+                <div class="col-lg-2 mr-lg-2 my-1 rounded bg-white ">
+                  <input type="radio" name="SkillClass" id="SkillClass" value="科技" >
+                  <label for="科技" class="py-1">科技</label>
+                </div>
+                <div class="col-lg-2 mr-lg-2 my-1 rounded bg-white ">
+                  <input type="radio" name="SkillClass" id="SkillClass" value="娛樂" >
+                  <label for="娛樂" class="py-1">娛樂</label>
+                </div>
+                <div class="col-lg-2 mr-lg-2 my-1 rounded bg-white ">
+                  <input type="radio" name="SkillClass" id="SkillClass" value="其他" >
+                  <label for="其他" class="py-1">其他</label>
+                </div>
+              </div>
+              <h6 class="font-weight-bold pt-4 pb-1">技能描述:</h6>
+              <textarea name="CaseInformation" id="CaseInformation" class="border p-3 w-100" rows="7"
+                placeholder="寫下你的技能描述"></textarea>
+            </div>
+            <div class="col-lg-6">
+              <h6 class="font-weight-bold pt-4 pb-1">地區</h6>
+              <select name="locaL" id="local" class="w-100">
+                <option value="北部">北部</option>
+                <option value="中部">中部</option>
+                <option value="南部">南部</option>
+                <option value="東部">東部</option>
+                <option value="離島">離島</option>
+              </select>
+              <h6 class="font-weight-bold pt-4 pb-1">地點</h6>
+              <input class="border w-100 p-2 bg-white text-capitalize" type="text" name="area" id="area">
+              <h6 class="font-weight-bold pt-4 pb-1">完成期限</h6>
+              <input class="border w-100 p-2 bg-white text-capitalize" type="date"" name="expectedTime" id="expectedTime">
+              <div class="coin">
+                <h6 class="font-weight-bold pt-4 pb-1">技能交換點數</h6>
+                <div class="row px-3">
+                  <div class="col-lg-4 mr-lg-4 rounded bg-white my-2 ">
+                    <input type="text" name="coin" id="coin" class="border-0 py-2 w-100 price" placeholder="點數"
+                      id="price">
+                  </div>
+                  <div class="col-lg-4 mrx-4 rounded bg-white my-2 ">
+                    <input type="checkbox" value="Negotiable" id="Negotiable">
+                    <label for="Negotiable" class="py-2">點數可議</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <button type="submit" id="submit" class="btn btn-primary d-block mt-2">刊登技能</button>
+        <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+        <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+      </form>
+    </div>
+  </section>
+  <!--============================
+=            Footer            =
+=============================-->
+
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+          <div class="counter-content text-center bg-light py-4 rounded">
+            <i class="fa fa-smile-o d-block"></i>
+            <span class="counter my-2 d-block" data-count="000">0</span>
+            <h5>顧客滿意度</h5>
+            </script>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+          <div class="counter-content text-center bg-light py-4 rounded">
+            <i class="fa fa-user-o d-block"></i>
+            <span class="counter my-2 d-block" data-count="000">0</span>
+            <h5>會員人數</h5>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+          <div class="counter-content text-center bg-light py-4 rounded">
+            <i class="fa fa-bookmark-o d-block"></i>
+            <span class="counter my-2 d-block" data-count="4">0</span>
+            <h5>已刊登的技能</h5>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 my-lg-0 my-3">
+          <div class="counter-content text-center bg-light py-4 rounded">
+            <i class="fa fa-eye d-block"></i>
+            <span class="counter my-2 d-block" data-count="158">0</span>
+            <h5>網站搜尋人數</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="call-to-action overly bg-3 section-sm">
+    <!-- Container Start -->
+    <div class="container">
+      <div class="row justify-content-md-center text-center">
+        <div class="col-md-8">
+          <div class="content-holder">
+            <h2>加入會員，經營屬於自己的事業</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Container End -->
+  </section>
+
+  <!-- JAVASCRIPTS -->
+  <script src="js/Adlisting.js"></script>
+  <script src="plugins/jQuery/jquery.min.js"></script>
+  <script src="plugins/bootstrap/js/popper.min.js"></script>
+  <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="plugins/bootstrap/js/bootstrap-slider.js"></script>
+  <!-- tether js -->
+  <script src="plugins/tether/js/tether.min.js"></script>
+  <script src="plugins/raty/jquery.raty-fa.js"></script>
+  <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+  <script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+  <script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
+  <script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
+  <!-- google map -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+  <script src="plugins/google-map/gmap.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>

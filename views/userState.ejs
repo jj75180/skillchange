@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>交換技能平台</title>
+  
+  <!-- FAVICON -->
+  <link href="img/favicon.png" rel="shortcut icon">
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap-slider.css">
+  <!-- Font Awesome -->
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Owl Carousel -->
+  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+  <!-- Fancy Box -->
+  <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<%-partial('partial/header')%>
+<section class="user-profile section" style="background-color:whitesmoke">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+				<div class="sidebar">
+					<!-- User Widget -->
+					<div class="widget user">
+						<!-- User Image -->
+						<div class="image d-flex justify-content-center">
+						<!--	<img src="" alt="" class="">   使用者大頭貼-->
+						</div>
+						<h5 class="text-center"><%=userPofile.id_name %> </h5>
+                        <%if (Evaluation.length>1) { %> 
+                        <h3>總評分：<%=(TotalStar.TotalStar/Evaluation.length).toFixed(1) %> </h3>
+                        <% }else{ %>
+                            <h3>總評分：0</h3>
+                        <% } %> 
+					</div>
+					<!-- Dashboard Links -->
+				</div>
+			</div>
+			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0" style="background-color:whitesmoke">
+                <!-- Edit Profile Welcome Text -->
+                <div class="widget welcome-message">
+                    <div class="w3-card-4 w3-margin w3-white">
+                        <div class="w3-container w3-padding-hor-8" style="background-color:aliceblue;width:760px;">
+                            <h3><b>
+                                    <%=userPofile.id_name %>的技能
+                                </b></h3>
+                        </div>
+                
+                    </div>
+                </div>
+                <!-- Edit Personal Info -->
+                    <div class="widget welcome-message" style="background-color:whitesmoke">
+                        <div class="w3-card-4 w3-margin w3-white" >
+                              <div class="w3-container w3-padding-hor-8" style="background-color:aliceblue;width:760px;">
+                                <h3><b><%=userPofile.id_name %>發佈的任務</b></h3>
+                              </div>
+                              <% for(let i=0;i<data.length;i++) {%> 
+                              <div class="ad-listing-list mt-20 container" style="background-color:white">
+                                <div class="row p-lg-3 p-sm-5 p-4" >
+                                    <div class="col-lg-8">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-10">
+                                                <div class="ad-listing-content">
+                                                    <div style="background-color:aliceblue;width:700px;">
+                                                        <a href="single?singleCase=<%=data[i].case_num %>" class="font-weight-bold"> <%=data[i].caseinfo %>  </a>
+                                                    </div>
+                                                    <ul class="list-inline mt-2 mb-3">
+                                                        <li class="list-inline-item">地區：<%=data[i].local %></li>
+                                                        <li class="list-inline-item">地點：<%=data[i].area %></li>
+                                                        <li class="list-inline-item">價格：<%=data[i].coin %></li>
+                                                        <li class="list-inline-item">完成期限：<%=data[i].expectedTime.toDateString() %> </a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %> 
+                            </div>
+                    </div>
+                    <div class="widget welcome-message">
+                        <div class="w3-card-4 w3-margin w3-white">
+                            <div class="w3-container w3-padding-hor-8" style="background-color:aliceblue;width:760px;">
+                                <h3><b>
+                                        <%=userPofile.id_name %>的過往評論
+                                        
+                                    </b></h3>
+                                    <% for(let i=0;i<Evaluation.length;i++) {%> 
+                                        <ul class="list-inline mt-2 mb-3">
+                                            <li class="list-inline-item">帳號：<%=Evaluation[i].id_account %></li>
+                                            <li class="list-inline-item">評價：<%=Evaluation[i].Evaluation %></li>
+                                            <li class="list-inline-item">時間：<%=Evaluation[i].case_completedtime.toDateString() %></li>
+                                            <li class="list-inline-item">評分：<%=Evaluation[i].Star %> </a></li>
+                                        </ul>
+                                        <% } %>  
+                            </div>
+                        </div>
+                    </div>
+			</div>
+		</div>
+	</div>
+</section>
+<%-partial('partial/footer')%>
+</html>

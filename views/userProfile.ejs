@@ -1,0 +1,174 @@
+<% layout('layout') %>
+
+
+
+	<section class="user-profile section" style="background-color:whitesmoke">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+					<div class="sidebar">
+						<!-- User Widget -->
+						<div class="widget user">
+							<div class="image d-flex justify-content-center">
+								<img src="images/user/user-thumb.jpg" alt="" class="">
+							</div>
+							<h5 class="text-center">
+								<%=user.id_name %>
+							</h5>
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#headImage">上傳照片</button>
+							<div class="form-group">
+								<label for="last-name">COIN</label>
+								<h3>
+									<%=user.user_coin %>
+								</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
+					<!-- Edit Profile Welcome Text -->
+					<div class="widget welcome-message">
+						<h2>Edit profile</h2>
+						<p>您可以在這裡檢視您自己的資料,技能或修改技能</p>
+					</div>
+					<!-- Edit Personal Info -->
+					<div class="row">
+						<div class="col-lg-6 col-md-6">
+							<div class="widget personal-info">
+								<h3 class="widget-header user">您的名片</h3>
+								<div class="form-group">
+									<label for="first-name">暱稱</label>
+									<h3>
+										<%=user.id_name %>
+									</h3>
+								</div>
+								<div class="form-group">
+									<label for="last-name">電子信箱</label>
+									<h3>
+										<%=user.id_mail %>
+									</h3>
+								</div>
+								<div class="form-group">
+									<label for="last-name">地址</label>
+									<h3>
+										<%=user.id_address %>
+									</h3>
+								</div>
+								<div class="form-group">
+									<label for="last-name">電話</label>
+									<h3>
+										<%=user.id_phonenum %>
+									</h3>
+								</div>
+								<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#modaleditUserProfile">修改我的資料</button>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<!-- Change Password -->
+							<div class="widget personal-info">
+								<h3 class="widget-header user">您登記的技能</h3>
+								<div class="form-group">
+									<label for="first-name"></label>
+									<h3></h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div id="modaleditUserProfile" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+		data-keyboard="true" >
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="editUserProfile"　enctype="multipart/form-data" target="the_iframe">
+						<<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="id_num" id="id_num" value="<%=user.id_num %>">
+						<div class="form-group">
+							<label for="editin_name">修改暱稱</label>
+							<input type="text" name="id_name" class="form-control" id="id_name"
+								value="<%=user.id_name %>">
+						</div>
+						<div class="form-group">
+							<label for="editid_mail">修改Email</label>
+							<input type="email" name="id_mail" class="form-control" id="id_mail"
+								value="<%=user.id_mail %>">
+						</div>
+						<div class="form-group">
+							<label for="editin_address">修改地址</label>
+							<input type="text" name="id_address" class="form-control" id="id_address"
+								value="<%=user.id_address %>">
+						</div>
+						<div class="form-group">
+							<label for="editin_phonenum">修改電話</label>
+							<input type="text" name="id_phonenum" class="form-control" id="id_phonenum"
+								value="<%=user.id_phonenum %>">
+						</div>
+						<button class="btn btn-primary" class="close" type="submit" id="submit"
+							onclick="editUserProfile()" name="submit">確定修改資料</button>
+						<button class="btn btn-primary" class="close" data-dismiss="modal">離開</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="headImage" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+		data-keyboard="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="/api/uploadfile" method="POST" enctype="multipart/form-data">
+						<div class="form-group">
+							<label for="editin_name">上傳大頭貼</label>
+							<span class="upload_icon">➕</span>
+							<input type="file" name="upload" id="upload" multiple>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" type="submit" id="editUserProfileSubmit"
+						name="editUserProfileSubmit" data-bs-dismiss="modal">上傳</button>
+					<button class="btn btn-primary" class="close" data-dismiss="modal">離開</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<iframe id="is_iframe" name="the_iframe" style="display:none;"></iframe>
+
+	<script>
+		function editUserProfile() {
+			const editUserProfile = {
+				id_num: id_num.value,
+				id_name: id_name.value,
+				id_mail: id_mail.value,
+				id_address: id_address.value,
+				id_phonenum: id_phonenum.value,
+
+			}
+			console.log(editUserProfile);
+			fetch("/api/editUserProfile", {
+				method: "POST",
+				body: JSON.stringify(editUserProfile),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}).then(res => res.json())
+				.then(window.location.reload())
+
+		}
+	</script>

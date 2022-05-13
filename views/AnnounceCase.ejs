@@ -1,0 +1,28 @@
+<% layout('layout') %>
+
+<% for(var i=0;i<data.length;i++){ %> 
+  <div class="ad-listing-list mt-20 container" style="background-color:white;">
+    <div class="row p-lg-3 p-sm-5 p-4" >
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6 col-md-10">
+                    <div class="ad-listing-content">
+                        <div style="background-color:aliceblue;width:760px;">
+                            <a href="single?singleCase=<%=data[i].case_num %>" class="font-weight-bold"> <%=data[i].caseinfo %>  </a>
+                        </div>
+                        <ul class="list-inline mt-2 mb-3">
+                          <li class="list-inline-item">委託人：<%=data[i].id_account %></li>
+                          <li class="list-inline-item">地區：<%=data[i].local %></li>
+                          <li class="list-inline-item">地點：<%=data[i].area %></li>
+                          <li class="list-inline-item">價格：<%=data[i].coin %></li>
+                          <li class="list-inline-item">狀態：<%=data[i].case_staus %></li>
+                          <li class="list-inline-item">完成期限：<%=data[i].expectedTime.toDateString() %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="hr-edge-weak">
+<% } %> 

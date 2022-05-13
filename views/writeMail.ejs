@@ -1,0 +1,24 @@
+<% layout('layout') %>
+
+    <form onsubmit="return false;" id="writeMail">
+        <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="msg_SendID" id="msg_SendID" value="<%=user.id_account %>">
+        <div class="form-outline mb-4">
+            <label class="form-label" for="msg_RecID">收件人</label>
+            <input type="text" id="msg_RecID" name="msg_RecID" class="form-control" placeholder="請輸入您要發送的帳號" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="msgt_Subject">主旨</label>
+            <input type="text" id="msgt_Subject" name="msgt_Subject" class="form-control" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="msgt_massage">內容</label>
+            <textarea class="form-control" id="msgt_massage" name="msgt_massage" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4">發送</button>
+        <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+        <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+    </form>
+
+    <script src="js/writeMail.js"></script>

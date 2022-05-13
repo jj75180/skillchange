@@ -1,0 +1,254 @@
+<% layout('layout') %>
+<hr class="hr-twill">
+<% for(let i=0;i<data.length;i++){ %>
+        <section>
+            <div class="ad-listing-list mt-20 container" onclick="divClicked(<%=i%>);" style="background-color: white;">
+                <div class="row p-lg-3 p-sm-5 p-4">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-10">
+                                <div class="ad-listing-content">
+                                    <div>
+                                        <a href="" class="font-weight-bold">任務名稱：<%=data[i].caseinfo%></a>
+                                    </div>
+                                    <div>
+                                        <a href="" class="font-weight-bold">任務狀態：<%=data[i].case_staus%></a>
+                                    </div>
+                                    <ul class="list-inline mt-2 mb-3">
+                                        <li class="list-inline-item">任務點數：<%=data[i].coin %></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="eject<%=i%>" class="container" style="display:none">
+                <h6 class="font-weight-bold pt-4 pb-1"></h6>
+                <div class="widget personal-info">
+                    <h3 class="widget-header user">承接方名片</h3>
+                    <div class="form-group">
+                        <label for="first-name">暱稱</label>
+                        <h3>
+                            <%=data[i].id_name %>
+                        </h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">電子信箱</label>
+                        <h3>
+                            <%=data[i].id_mail %>
+                        </h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">地址</label>
+                        <h3>
+                            <%=data[i].id_address %>
+                        </h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">電話</label>
+                        <h3>
+                            <%=data[i].id_idnum %>
+                        </h3>
+                    </div>
+                </div>
+                <form onsubmit="return false;">
+                    <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="recmail" id="recmail<%=i %>" value="<%=data[i].id_mail %>">
+                    <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="caseinfo" id="caseinfo<%=i %>" value="<%=data[i].caseinfo %>">
+                    <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="username" id="username<%=i %>" value="<%=data[i].id_name %>">
+                    <button type="submit" class="btn btn-primary" onclick="buttonClicked(<%=i%>);" id="Accept<%=i %>" value="<%=data[i].case_num %>" >接受</button>
+                    <button type="submit" class="btn btn-primary" onclick="buttonNClicked(<%=i%>);" id="Refuse<%=i %>" value="<%=data[i].case_num %> " >拒絕</button>
+                </form>
+            </div>
+        </section>
+        <% } %>
+        <hr class="hr-twill">
+
+        <% for(let i=0;i<finishdata.length;i++){ %>
+            <section>
+                <div class="ad-listing-list mt-20 container" onclick="div1Clicked(<%=i%>);" style="background-color: white;">
+                    <div class="row p-lg-3 p-sm-5 p-4">
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10">
+                                    <div class="ad-listing-content">
+                                        <div>
+                                            <a href="" class="font-weight-bold">任務名稱：<%=finishdata[i].caseinfo%></a>
+                                        </div>
+                                        <div>
+                                            <a href="" class="font-weight-bold">任務狀態：<%=finishdata[i].case_staus %></a>
+                                        </div>
+                                        <ul class="list-inline mt-2 mb-3">
+                                            <li class="list-inline-item">任務點數：<%=finishdata[i].coin %></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="eject1<%=i%>" class="container" style="display:none">
+                    <h6 class="font-weight-bold pt-4 pb-1"></h6>
+                    <div class="widget personal-info">
+                        <h3 class="widget-header user">完成任務描述</h3>
+                        <div class="form-group">
+                            <h3>
+                                <%=finishdata[i].case_describe %>
+                            </h3>
+                        </div>
+                    </div>
+                    <form onsubmit="return false;">
+                        <label name="Star">給個評價吧</label>
+                        <select name="Star" id="Star<%=i %>" class="w-10" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                          <br>
+                        <label name="Evaluation">你會如何給予受委託人評價?</label>
+                        <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="Evaluation" id="Evaluation<%=i %>" required>
+                        <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="coin" id="coin<%=i %>" value="<%=finishdata[i].coin %>">
+                        <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="recmail" id="recmail<%=i %>" value="<%=finishdata[i].id_mail %>">
+                        <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="caseinfo" id="caseinfo<%=i %>" value="<%=finishdata[i].caseinfo %>">
+                        <input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="username" id="username<%=i %>" value="<%=finishdata[i].id_name %>">
+                        <button type="submit" class="btn btn-primary" onclick="finishClicked(<%=i%>);" id="finish<%=i %>" value="<%=finishdata[i].case_num %>">接受完成案件</button>
+                        <button type="submit" class="btn btn-primary" onclick="finishNClicked(<%=i%>);" id="notfinish<%=i %>" value="<%=finishdata[i].case_num %>">拒絕完成該任務</button>
+                    </form>
+                </div>
+            </section>
+
+            <% } %>
+            <script>
+                function div1Clicked(i) {
+                    var divD = document.getElementById("eject1"+i);
+                    if (divD.style.display == "none") {
+                        divD.style.display = "block";
+                    }
+                    else {
+                        divD.style.display = "none";
+                    }
+                }
+                function divClicked(i) {
+                    var divD = document.getElementById("eject"+i);
+                    if (divD.style.display == "none") {
+                        divD.style.display = "block";
+                    }
+                    else {
+                        divD.style.display = "none";
+                    }
+                }
+            </script>
+            <script>
+                function buttonClicked(i) {
+                    let callPostApiButton = document.getElementById("Accept" + i);
+                    let case_staus="執行任務";
+                    let recmail=document.getElementById("recmail" + i).value;
+                    let caseinfo=document.getElementById("caseinfo" + i).value;
+                    let username=document.getElementById("username" + i).value;
+                    const accept={
+                        case_num:callPostApiButton.value,
+                        case_staus:case_staus,
+                        recmail:recmail,
+                        caseinfo:caseinfo,
+                        username:username,
+                        
+                    }
+                    console.log(accept);
+                    fetch("/api/AcceptCase",{
+                        method:"POST",
+                        body:JSON.stringify(accept),
+                        headers:{
+                            "Content-Type":"application/json"
+                        }
+                    }).then(res=>res.json())
+                    .then(window.location.reload())
+
+                }
+                function buttonNClicked(i) {
+                    let callPostApiButton = document.getElementById("Refuse" + i);
+                    let case_staus="準備接單";
+                    let caseAcceptAccount=null;    
+                    const refuse={
+                        case_num:callPostApiButton.value,
+                        case_staus:case_staus,
+                        caseAcceptAccount:caseAcceptAccount,
+                    }
+                    console.log(refuse);
+                    fetch("/api/refuse",{
+                        method:"POST",
+                        body:JSON.stringify(refuse),
+                        headers:{
+                            "Content-Type":"application/json"
+                        }
+                    }).then(res=>res.json())
+                    .then(window.location.reload())
+
+                }
+                function finishNClicked(i) {
+                    let callPostApiButton = document.getElementById("notfinish" + i);
+                    let case_staus="任務失敗";
+                    let recmail=document.getElementById("recmail" + i).value;
+                    let caseinfo=document.getElementById("caseinfo" + i).value;
+                    let username=document.getElementById("username" + i).value;
+                    let Star=parseInt(document.getElementById("Star" + i).value,10);
+                    let Evaluation=document.getElementById("Evaluation" + i).value;
+
+
+                    const notfinish={
+                        case_num:callPostApiButton.value,
+                        case_staus:case_staus,
+                        recmail:recmail,
+                        caseinfo:caseinfo,
+                        username:username,
+                        Star:Star,
+                        Evaluation:Evaluation,
+                    }
+                    
+                   console.log(notfinish);
+                    fetch("/api/notfinish",{
+                        method:"POST",
+                        body:JSON.stringify(notfinish),
+                        headers:{
+                            "Content-Type":"application/json"
+                        }
+                    }).then(res=>res.json())
+                    .then(window.location.reload())
+
+                }
+                function finishClicked(i) {
+                    let callPostApiButton = document.getElementById("finish" + i);
+                    let case_staus="驗收完成";
+                    let recmail=document.getElementById("recmail" + i).value;
+                    let caseinfo=document.getElementById("caseinfo" + i).value;
+                    let username=document.getElementById("username" + i).value;
+                    let coin=parseInt(document.getElementById("coin" + i).value,10);
+                    let Star=parseInt(document.getElementById("Star" + i).value,10);
+                    let Evaluation=document.getElementById("Evaluation" + i).value;
+
+
+                    const finalCase={
+                        case_num:callPostApiButton.value,
+                        case_staus:case_staus,
+                        recmail:recmail,
+                        caseinfo:caseinfo,
+                        username:username,
+                        coin:coin,
+                        Star:Star,
+                        Evaluation:Evaluation,
+                    }
+                    console.log(finalCase);
+                    fetch("/api/finalCase",{
+                        method:"POST",
+                        body:JSON.stringify(finalCase),
+                        headers:{
+                            "Content-Type":"application/json"
+                        }
+                    }).then(res=>res.json())
+                    .then(window.location.reload())
+
+                }
+
+
+            </script>

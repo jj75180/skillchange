@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技能交換平台</title>
+  
+  <!-- FAVICON -->
+  <link href="img/favicon.png" rel="shortcut icon">
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap-slider.css">
+  <!-- Font Awesome -->
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Owl Carousel -->
+  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+  <!-- Fancy Box -->
+  <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .btn{
+        font-size: 13px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 6px 5px;
+    border-radius: 12px;
+    }
+</style>
+</head>
+<body class="body-wrapper">
+
+
+	<section>
+		<div class="container" style="background-color:white">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-expand-lg navbar-light navigation">
+						<a class="navbar-brand" href="/">
+							<img src="images/home/skill-levels-knob-button-increasing-260nw-1484062181.jpg" alt="">
+						</a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse"
+							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto main-nav ">
+								<li class="nav-item block">
+									<a class="nav-link" href="/ad-list-view?adlistview=all">熱門任務</a>
+								</li>
+								<li class="nav-item block">
+									<a class="nav-link" href="Ad-listing">發佈任務</a>
+								</li>
+								
+								<li class="nav-item dropdown dropdown-slide">
+									<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										流程介紹 <span><i class="fa fa-angle-down"></i></span>
+									</a>
+									<!-- Dropdown list -->
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="sell-intrduce">出租技能</a>
+										<a class="dropdown-item" href="reant-intrduce">租用技能</a>
+										<a class="dropdown-item" href="terms-condition">服務條款</a>
+									</div>
+								</li>
+								<li class="nav-item dropdown dropdown-slide">
+									<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										需要幫助 <span><i class="fa fa-angle-down"></i></span>
+									</a>
+									<!-- Dropdown list -->
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="about-us">關於我們</a>
+										<a class="dropdown-item" href="contact-us">聯繫我們</a>
+									</div>
+							</ul>
+							<ul class="navbar-nav ml-auto mt-12">
+									<li class="nav-item">
+										<a class="nav-link login-button" href="/memberArea">會員中心</a>
+									<li class="nav-item">
+										<a class="nav-link text-white add-button" href="/logout"><i
+												class="fa fa-plus-circle"></i> 登出</a>
+									</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+<body class="body-wrapper" style="background-color:whitesmoke">
+	<section class="blog section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0"> 
+                    <% if(status=="Allmember"){%>
+                    <table style="text-align:center;">
+                        <tr style="border: 1px solid #333;">
+                            <th style="border: 1px solid #333;">編號</th> 
+                            <th style="border: 1px solid #333;">帳號</th>
+                            <th style="border: 1px solid #333;">電子信箱</th>
+                            <th style="border: 1px solid #333;">電話號碼</th>
+                            <th style="border: 1px solid #333;">詳細資料及修改</th>
+                            <th style="border: 1px solid #333;">發E-mail</th>
+                        </tr>
+                        <% for(i=0;i<Allmember.length;i++){ %> 
+                        <tr>
+                            <td style="border: 1px solid #333;"><%=Allmember[i].id_num%></td>
+                            <td style="border: 1px solid #333;"><%=Allmember[i].id_account%></td>
+                            <td style="border: 1px solid #333;"><%=Allmember[i].id_mail%></td>
+                            <td style="border: 1px solid #333;"><%=Allmember[i].id_phonenum%></td>
+                            <td style="border: 1px solid #333;"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaleditUserProfile<%=i %>">設定</button></td>
+                            <td style="border: 1px solid #333;"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#sendmail<%=i %>">發E-mail</button></td>
+                        </tr>
+                        <% } %> 
+                    </table>
+                    <% } %> 
+                    <% if(status=="AllCase" ){%>
+                        <table style="text-align:center;">
+                            <tr style="border: 1px solid #333;">
+                                <th style="border: 1px solid #333;">編號</th>
+                                <th style="border: 1px solid #333;">刊登者帳號</th>   
+                                <th style="border: 1px solid #333;">任務名稱</th>
+                                <th style="border: 1px solid #333;">任務類別</th>
+                                <th style="border: 1px solid #333;">刊登時間</th>
+                                <th style="border: 1px solid #333;">完成時間</th>
+                                <th style="border: 1px solid #333;">任務狀態</th>
+                                <th style="border: 1px solid #333;">其餘資料</th>
+                                <th style="border: 1px solid #333;">設定</th>
+                            </tr>
+                            <% for(i=0;i<AllCase.length;i++){ %> 
+                            <tr>
+                                <td style="border: 1px solid #333;"><%=AllCase[i].case_num%></td>
+                                <td style="border: 1px solid #333;"><%=AllCase[i].id_account%></td>
+                                <td style="border: 1px solid #333;"><%=AllCase[i].caseinfo%></td>
+                                <td style="border: 1px solid #333;"><%=AllCase[i].SkillClass%></td>
+                                <td style="border: 1px solid #333;"><%=AllCase[i].expectedTime%></td>
+                                <td style="border: 1px solid #333;"><%=AllCase[i].case_completedtime%></td>
+                                <td style="border: 1px solid #333;"><%=AllCase[i].case_staus%></td>
+                                <td style="border: 1px solid #333;"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#allcase<%=i %>">其他資料</button></td>
+                                <td style="border: 1px solid #333;"><button type="submit" style="width:100px;height:30px" class="btn btn-warning" onclick="deletecase(<%=i%>);" id="deletecase<%=i %>" value="<%=AllCase[i].case_num %>">刪除該筆資料</button></td>
+                            </tr>
+                            <% } %> 
+                        </table>
+                        <% } %> 
+                        <% if(status=="failCase" ){%>
+                            <table style="text-align:center;">
+                                <tr style="border: 1px solid #333;">
+                                    <th style="border: 1px solid #333;">編號</th>
+                                    <th style="border: 1px solid #333;">刊登者帳號</th>   
+                                    <th style="border: 1px solid #333;">任務名稱</th>
+                                    <th style="border: 1px solid #333;">任務類別</th>
+                                    <th style="border: 1px solid #333;">刊登時間</th>
+                                    <th style="border: 1px solid #333;">完成時間</th>
+                                    <th style="border: 1px solid #333;">任務狀態</th>
+                                    <th style="border: 1px solid #333;">其餘資料</th>
+                                </tr>
+                                <% for(i=0;i<failCase.length;i++){ %> 
+                                <tr>
+                                    <td style="border: 1px solid #333;"><%=failCase[i].case_num%></td>
+                                    <td style="border: 1px solid #333;"><%=failCase[i].id_account%></td>
+                                    <td style="border: 1px solid #333;"><%=failCase[i].caseinfo%></td>
+                                    <td style="border: 1px solid #333;"><%=failCase[i].SkillClass%></td>
+                                    <td style="border: 1px solid #333;"><%=failCase[i].expectedTime%></td>
+                                    <td style="border: 1px solid #333;"><%=failCase[i].case_completedtime%></td>
+                                    <td style="border: 1px solid #333;"><%=failCase[i].case_staus%></td>
+                                    <td style="border: 1px solid #333;"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#failCase<%=i %>">其他資料</button></td>
+                                </tr>
+                                <% } %> 
+                            </table>
+                            <% } %> 
+				</div>
+				<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+					<div class="sidebar">
+						<div class="widget category">
+							<!--messqge-->
+							<h5 class="widget-header" style="background-color:aliceblue;padding:10px;margin-bottom:5px;">會員資料</a></h5>
+							<ul class="category-list">
+								<li><a href="/backstage?pages=Allmember">全體會員資料</a></li>
+							</ul>
+						</div>
+						<div class="widget category">
+							<!--messqge-->
+							<h5 class="widget-header" style="background-color:aliceblue;padding:10px;margin-bottom:5px;">任務資料</h5>
+							<ul class="category-list">
+								<li><a href="/backstage?pages=AllCase">任務全貌</a></li>
+								<li><a href="/backstage?pages=failCase">失敗任務處理</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <% if(status=="failCase" ){%>
+        <% for(i=0;i<failCase.length;i++){ %>
+        <div id="failCase<%=i %>" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+            data-keyboard="true" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="id_name" style="background: black;"">刊登者帳號</label>
+                                <hr>
+                                <p><%=failCase[i].id_account %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">任務資訊</label>
+                                <hr>
+                                <p><%=failCase[i].caseinfo %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">完成期限</label>
+                                <hr>
+                                <p><%=failCase[i].expectedTime %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">完成時間</label>
+                                <hr>
+                                <p><%=failCase[i].case_completedtime %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">受委託人</label>
+                                <hr>
+                                <p><%=failCase[i].caseAcceptAccount %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">任務狀態</label>
+                                <hr>
+                                <p><%=failCase[i].case_staus %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">地區</label>
+                                <hr>
+                                <p><%=failCase[i].local %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">地點</label>
+                                <hr>
+                                <p><%=failCase[i].area %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">任務點數</label>
+                                <hr>
+                                <p><%=failCase[i].coin %></p>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mb-4" data-dismiss="modal">離開</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %> 
+        <% } %> 
+    <% if(status=="AllCase" ){%>
+        <% for(i=0;i<AllCase.length;i++){ %>
+        <div id="allcase<%=i %>" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+            data-keyboard="true" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="id_name" style="background: black;"">刊登者帳號</label>
+                                <hr>
+                                <p><%=AllCase[i].id_account %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">任務資訊</label>
+                                <hr>
+                                <p><%=AllCase[i].caseinfo %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">完成期限</label>
+                                <hr>
+                                <p><%=AllCase[i].expectedTime %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">完成時間</label>
+                                <hr>
+                                <p><%=AllCase[i].case_completedtime %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">受委託人</label>
+                                <hr>
+                                <p><%=AllCase[i].caseAcceptAccount %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">任務狀態</label>
+                                <hr>
+                                <p><%=AllCase[i].case_staus %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">地區</label>
+                                <hr>
+                                <p><%=AllCase[i].local %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">地點</label>
+                                <hr>
+                                <p><%=AllCase[i].area %></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_name">任務點數</label>
+                                <hr>
+                                <p><%=AllCase[i].coin %></p>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mb-4" data-dismiss="modal">離開</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %> 
+    <% } %> 
+    <% if(status=="Allmember"){%>
+    <% for(i=0;i<Allmember.length;i++){ %>
+    <div id="modaleditUserProfile<%=i %>" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+    data-keyboard="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return false;" id="editUserProfile" enctype="multipart/form-data" target="the_iframe">
+                    <div class="form-group">
+                        <label for="id_name">修改暱稱</label>
+                        <input type="text" name="id_name" class="form-control" id="id_name<%=i %>"
+                            value="<%=Allmember[i].id_name %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_account">修改帳號</label>
+                        <input type="text" name="id_account" class="form-control" id="id_account<%=i %>"
+                            value="<%=Allmember[i].id_account %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_mail">修改電子信箱</label>
+                        <input type="email" name="id_mail" class="form-control" id="id_mail<%=i %>"
+                            value="<%=Allmember[i].id_mail %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_phonenum">修改電話號碼</label>
+                        <input type="text" name="id_phonenum" class="form-control" id="id_phonenum<%=i %>"
+                            value="<%=Allmember[i].id_phonenum %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_address">修改地址</label>
+                        <input type="text" name="id_address" class="form-control" id="id_address<%=i %>"
+                            value="<%=Allmember[i].id_address %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_idnum">修改身份證字號</label>
+                        <input type="text" name="id_idnum" class="form-control" id="id_idnum<%=i %>"
+                            value="<%=Allmember[i].id_idnum %>">
+                    </div>
+                    <button class="btn btn-primary" onclick="Clicked(<%=i%>)" class="close" type="submit" id="useredit<%=i %>" value="<%=Allmember[i].id_num %>" name="submit">確定修改資料</button>
+                    <button class="btn btn-primary" onclick="deleteuser(<%=i %>)" class="close" type="submit" id="deleteuser<%=i %>" value="<%=Allmember[i].id_num %>"name="submit" >刪除會員資料</button>
+                    <button class="btn btn-primary" class="close" data-dismiss="modal">離開</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="sendmail<%=i %>" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+    data-keyboard="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="sendmail" onsubmit="return false;" enctype="multipart/form-data">
+                    <input type="hidden" name="coin" id="recmail<%=i %>" value="<%=Allmember[i].id_mail %>">
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="subject">主旨</label>
+                        <input type="text" id="subject<%=i %>" name="subject" class="form-control" />
+                    </div>
+            
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="text">內容</label>
+                        <textarea class="form-control" id="text<%=i %>" name="text" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" onclick="mail(<%=i%>)" class="close" type="submit" id="mail<%=i %>" name="submit">發送</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" data-dismiss="modal">離開</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %> 
+<% } %> 
+</body>
+<%-partial('partial/footer')%>
+</html>
+<script>
+function Clicked(i) {
+    let callPostApiButton = document.getElementById("useredit" + i);
+    let id_name=document.getElementById("id_name" + i).value;
+    let id_account=document.getElementById("id_account" + i).value;
+    let id_mail=document.getElementById("id_mail" + i).value;
+    let id_phonenum=document.getElementById("id_phonenum" + i).value;
+    let id_address=document.getElementById("id_address" + i).value;
+    let id_idnum=document.getElementById("id_idnum" + i).value;
+    const useredit={
+        id_num:callPostApiButton.value,
+        id_name:id_name,
+        id_account:id_account,
+        id_mail:id_mail,
+        id_phonenum:id_phonenum,
+        id_address:id_address,
+        id_idnum:id_idnum,
+    }
+    fetch("/api/useredit",{
+        method:"POST",
+        body:JSON.stringify(useredit),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res=>res.json())
+    .then(window.location.reload())
+}
+function deleteuser(i) {
+    let callPostApiButton = document.getElementById("deleteuser" + i);
+    let id_exist="0";
+    const deleteuser={
+        id_num:callPostApiButton.value,
+        id_exist:id_exist,
+    }
+    console.log(deleteuser);
+    fetch("/api/deleteuser",{
+        method:"POST",
+        body:JSON.stringify(deleteuser),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res=>res.json())
+    .then(window.location.reload())
+}
+function mail(i) {
+    let recmail=document.getElementById("recmail" + i).value;
+    let text=document.getElementById("text" + i).value;
+    let subject=document.getElementById("subject" + i).value;
+
+    const sendmail={
+        text:text,
+        subject:subject,
+        recmail:recmail,
+    }
+    fetch("/api/sendmail",{
+        method:"POST",
+        body:JSON.stringify(sendmail),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res=>res.json())
+    .then(window.location.reload())
+}
+function deletecase(i) {
+    let callPostApiButton = document.getElementById("deletecase" + i);
+    let case_staus="任務失敗";
+    const deletecase={
+        case_num:callPostApiButton.value,
+        case_staus:case_staus,
+    }
+    console.log(deletecase);
+    fetch("/api/deletecase",{
+        method:"POST",
+        body:JSON.stringify(deletecase),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res=>res.json())
+    .then(window.location.reload())
+}
+
+</script>

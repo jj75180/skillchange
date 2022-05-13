@@ -1,0 +1,61 @@
+<% layout('layout') %>
+
+<% for(let i=0;i<data.length;i++){ %>
+    <section>
+        <div class="ad-listing-list mt-20 container" onclick="div1Clicked(<%=i%>);" style="background-color: white;">
+            <div class="row p-lg-3 p-sm-5 p-4">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-10">
+                            <div class="ad-listing-content">
+                                <div>
+                                    <a href="" class="font-weight-bold">任務名稱：<%=data[i].caseinfo%></a>
+                                </div>
+                                <div>
+                                    <a href="" class="font-weight-bold">任務狀態：<%=data[i].case_staus %></a>
+                                </div>
+                                <ul class="list-inline mt-2 mb-3">
+                                    <li class="list-inline-item">任務點數：<%=data[i].coin %></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="eject1<%=i%>" class="container" style="display:none">
+            <h6 class="font-weight-bold pt-4 pb-1"></h6>
+            <div class="widget personal-info">
+                <h3 class="widget-header user">完成任務描述</h3>
+                <div class="form-group">
+                    <label for="first-name">施作者名稱</label>
+                    <h3>
+                        <a href="userState?id=<%=data[i].id_num %>"><%=data[i].id_name %></a>
+                    </h3>
+                    <label for="first-name">施作者信箱</label>
+                    <h3>
+                        <a><%=data[i].id_mail %></a>
+                    </h3>
+                </div>
+                <div class="form-group">任務描述
+                    <h3>
+                        <%=data[i].case_describe %>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <% } %>
+
+    <script>
+        function div1Clicked(i) {
+            var divD = document.getElementById("eject1"+i);
+            if (divD.style.display == "none") {
+                divD.style.display = "block";
+            }
+            else {
+                divD.style.display = "none";
+            }
+        }
+    </script>

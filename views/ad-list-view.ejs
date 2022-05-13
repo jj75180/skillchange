@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>交換技能平台</title>
+
+  <!-- FAVICON -->
+  <link href="img/favicon.png" rel="shortcut icon">
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap-slider.css">
+  <!-- Font Awesome -->
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Owl Carousel -->
+  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+  <!-- Fancy Box -->
+  <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<%-partial('partial/header')%>
+  <section>
+<body class="body-wrapper">
+  <section class="section-sm" style="background-color:whitesmoke">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-4">
+          <div class="category-sidebar">
+            <div class="widget category-list">
+              <h4 class="widget-header" style="background-color:aliceblue;padding:10px;margin-bottom:5px;">技能分類</h4>
+              <ul class="category-list">
+                <li><a href="/ad-list-view?adlistview=all">所有技能 <span></span></a></li>
+                <li><a href="/ad-list-view?Class=學習">學習 <span></span></a></li>
+                <li><a href="/ad-list-view?Class=生活">生活 <span></span></a></li>
+                <li><a href="/ad-list-view?Class=創意">創意 <span></span></a></li>
+                <li><a href="/ad-list-view?Class=科技">科技 <span></span></a></li>
+                <li><a href="/ad-list-view?Class=娛樂">娛樂 <span></span></a></li>
+                <li><a href="/ad-list-view?Class=其他">其他 <span></span></a></li>
+              </ul>
+            </div>
+
+            <div class="widget category-list">
+              <h4 class="widget-header" style="background-color:aliceblue;padding:10px;margin-bottom:5px;">地區分類</h4>
+              <ul class="category-list">
+                <li><a href="/ad-list-view?adlistview=all">所有技能 <span></span></a></li>
+                <li><a href="/ad-list-view?local=北部">北部<span></span></a></li>
+                <li><a href="/ad-list-view?local=中部">中部<span></span></a></li>
+                <li><a href="/ad-list-view?local=南部">南部<span></span></a></li>
+                <li><a href="/ad-list-view?local=東部">東部<span></span></a></li>
+                <li><a href="/ad-list-view?local=離島">離島<span></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-8">
+          <!-- 全部的技能  -->
+          <% for(var i=0;i<data.length;i++){ %> 
+            <div class="ad-listing-list mt-20 container" style="background-color:white; font-size: 20pt;">
+              <div class="row p-lg-3 p-sm-5 p-4" >
+                  <div class="col-lg-8">
+                      <div class="row">
+                          <div class="col-lg-6 col-md-10">
+                              <div class="ad-listing-content">
+                                  <div style="background-color:aliceblue;width:760px;">
+                                      <a href="single?singleCase=<%=data[i].case_num %>" class="font-weight-bold"> <%=data[i].caseinfo %>  </a>
+                                  </div>
+                                  <ul class="list-inline mt-2 mb-3">
+                                    <li class="list-inline-item">委託人：<%=data[i].id_account %></li>
+                                    <li class="list-inline-item">地區：<%=data[i].local %></li>
+                                    <li class="list-inline-item">地點：<%=data[i].area %></li>
+                                    <li class="list-inline-item">價格：<%=data[i].coin %></li>
+                                    <li class="list-inline-item">完成期限：<%=data[i].expectedTime.toDateString() %> </a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <% } %> 
+          <!-- ad listing list  -->
+
+          <!-- pagination -->
+          <div class="pagination justify-content-center py-4">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- pagination -->
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<%-partial('partial/footer')%>
+</html>

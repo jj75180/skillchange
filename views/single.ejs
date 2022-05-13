@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>交換技能平台</title>
+  
+  <!-- FAVICON -->
+  <link href="img/favicon.png" rel="shortcut icon">
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap-slider.css">
+  <!-- Font Awesome -->
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Owl Carousel -->
+  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+  <!-- Fancy Box -->
+  <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body class="body-wrapper">
+<%-partial('partial/header')%>
+<!--===================================
+=            Store Section            =
+====================================-->
+<section class="section bg-gray">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<!-- Left sidebar -->
+			<div class="col-md-8">
+				<div class="product-details">
+					<h1 class="product-title"> <%=data.caseinfo %></h1>
+					<div class="product-meta">
+						<ul class="list-inline">
+							<li class="list-inline-item"><i class="fa fa-user-o"></i> By <a href="userState?id=<%=data.id_num %>"><%=data.id_account %> </a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> 地區：<%=data.local %></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow">地點：<%=data.area %></i>
+						</ul>
+					</div>
+
+					<!-- product slider -->
+					<div class="product-slider">
+						<div class="product-slider-item my-4" data-image="images/products/products-1.jpg">
+							<img class="img-fluid w-100" src="images/products/products-1.jpg" alt="product-img">
+						</div>
+						<div class="product-slider-item my-4" data-image="images/products/products-1.jpg">
+							<img class="d-block img-fluid w-100" src="images/products/products-1.jpg" alt="Second slide">
+						</div>
+						<div class="product-slider-item my-4" data-image="images/products/products-1.jpg">
+							<img class="d-block img-fluid w-100" src="images/products/products-1.jpg" alt="Third slide">
+						</div>
+						<div class="product-slider-item my-4" data-image="images/products/products-1.jpg">
+							<img class="d-block img-fluid w-100" src="images/products/products-1.jpg" alt="Third slide">
+						</div>
+						<div class="product-slider-item my-4" data-image="images/products/products-1.jpg">
+							<img class="d-block img-fluid w-100" src="images/products/products-1.jpg" alt="Third slide">
+						</div>
+					</div>
+					<!-- product slider -->
+
+					<div class="content mt-5 pt-5">
+						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+								 aria-selected="true">需求介紹</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
+								 aria-selected="false">技能細節</a>
+							</li>
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								<h3 class="tab-title">需求介紹</h3>
+								<p>賣家技能介紹：<%=data.CaseInformation %> </p>
+							</div>
+							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+								<h3 class="tab-title">技能細節</h3>
+								<table class="table table-bordered product-table">
+									<tbody>
+										<tr>
+											<td>交換條件</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>預計完成時間</td>
+											<td><%=data.expectedTime.toDateString() %> </td>
+										</tr>
+										<tr>
+											<td>技能等級</td>
+											<td>業餘</td>
+										</tr>
+										<tr>
+											<td>地區</td>
+											<td><%=data.local %> </td>
+										</tr>
+										<tr>
+											<td>賣家備註</td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+			<div class="col-md-4">
+				<div class="sidebar">
+					<div class="widget price text-center">
+						<h4>刊登點數</h4>
+						<p>$<%=data.coin %> </p>
+					</div>
+					<!-- User Profile widget -->
+					<div class="widget user text-center">
+						<img class="rounded-circle img-fluid mb-5 px-5" src="images/team/人物.jpg" alt="">
+						<h4><a href=""><%=data.id_account %> </a></h4>
+						<ul class="list-inline mt-20">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#Modaltask">我要承接</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#ModalwriteMail">聯繫賣家</button>
+						</ul>
+					</div>
+
+					<div class="widget disclaimer">
+						<h5 class="widget-header">安全提示</h5>
+						<ul>
+							<li>與買、賣家見面需有人陪同</li>
+							<li>買、賣家個人行為本網站無法保證</li>
+							<li>確實檢查是否符合施工內容</li>
+							<li>切勿隨意給予他人門鎖開啟方式</li>
+						</ul>
+					</div>
+					<!-- Coupon Widget -->
+					<div class="widget coupon text-center">
+						<!-- Coupon description -->
+						<p>您有好的任務想刊登?
+						</p>
+						<!-- Submii button -->
+						<a href="Ad-listing" class="btn btn-transparent-white">立即交換</a>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+
+	
+<div id="ModalwriteMail" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+		data-keyboard="true" >
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form onsubmit="return false;" id="writeMail">
+						<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="msg_SendID" id="msg_SendID" value="<%=user.id_account %>">
+						<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="msg_RecID" id="msg_RecID" value="<%=data.id_account %>">				
+						<div class="form-outline mb-4">
+							<label class="form-label" for="msgt_Subject">主旨</label>
+							<input type="text" id="msgt_Subject" name="msgt_Subject" class="form-control" />
+						</div>
+				
+						<div class="form-outline mb-4">
+							<label class="form-label" for="msgt_massage">內容</label>
+							<textarea class="form-control" id="msgt_massage" name="msgt_massage" rows="4"></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary btn-block mb-4">發送</button>
+						<div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+						<div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+</div>
+<div id="Modaltask" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+		data-keyboard="true" >
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form onsubmit="return false;" id="taskCase">
+						<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="case_num" id="case_num" value="<%=data.case_num %>">
+						<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="caseAcceptAccount" id="caseAcceptAccount" value="<%=user.id_account %>">
+						<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="username" id="username" value="<%=data.id_name %>">
+						<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="recmail" id="recmail" value="<%=data.id_mail %>">
+						<input type="hidden" class="border w-100 p-2 bg-white text-capitalize" name="caseinfo" id="caseinfo" value="<%=data.caseinfo %>">	
+						<div class="form-group">
+							<label for="first-name">任務名稱</label>
+							<h3>
+								<%=data.caseinfo %>
+							</h3>
+						</div>
+						<div class="form-group">
+							<label for="last-name">地點</label>
+							<h3>
+								<%=data.area %>
+							</h3>
+						</div>
+						<div class="form-group">
+							<label for="last-name">COIN</label>
+							<h3>
+								<%=data.coin %>
+							</h3>
+						</div>
+						<div class="form-group">
+							<label for="last-name">完成期限</label>
+							<h3>
+								<%=data.expectedTime.toDateString() %>
+							</h3>
+						</div>
+						<h3>
+							確定要承接嗎？
+						</h3>
+						<button type="submit" class="btn btn-primary">承接</button>
+						<button class="btn btn-primary" class="close" data-dismiss="modal">離開</button>
+						<div class="alert alert-danger" role="alert" id="err" style="display:none;"></div>
+						<div class="alert alert-success" role="alert" id="succ" style="display:none;"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+</div>
+<script src="js/writeMail.js"></script>
+<script src="js/taskCase.js"></script>
+</body>
+
+
+<%-partial('partial/footer')%>
+</html>

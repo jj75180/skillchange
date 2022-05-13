@@ -1,0 +1,10 @@
+<% layout('layout') %>
+
+<section class="jumbotron text-center">
+    <div class="container">
+     <h1><%=user.id_name%>，歡迎回來！ </h1>
+    </div>
+    <% if(user.id_account=='Administrator'){ %>
+        <button><a href="/backstage"><i class="fa fa-book"></i>後台管理系統</a> </button>
+    <% } %> 
+</section>
